@@ -1,5 +1,14 @@
 import React from 'react';
+import GlobalNavigationBar from 'components/GlobalNavigationBar';
 
-const App = () => <h1>프리온보딩 프론트엔드 코스</h1>;
+import 'styles/App.css';
+
+const App = () => {
+  return (
+    <>
+      <GlobalNavigationBar />
+    </>
+  );
+};
 
 export default App;
