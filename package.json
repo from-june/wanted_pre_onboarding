@@ -1,0 +1,20 @@
+{
+  "name": "preonboarding-frontend-wanted",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pak-fuse/preonboarding-FE-wanted.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pak-fuse/preonboarding-FE-wanted/issues"
+  },
+  "homepage": "https://github.com/pak-fuse/preonboarding-FE-wanted#readme"
+}
