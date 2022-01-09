@@ -1,18 +1,21 @@
 import React from 'react';
 
 import 'styles/GlobalNavigationBar.css';
-
-const menuList = [
-  { category: '채용' },
-  { category: '이벤트' },
-  { category: '직군별 연봉' },
-  { category: '이력서' },
-  { category: '커뮤니티', iconPath: '/assets/icons/new.svg' },
-  { category: '프리랜서' },
-  { category: 'AI 합격예측', iconPath: '/assets/icons/beta.svg' }
-];
+import Icons from 'components/Icons';
 
 const GlobalNavigationBar = () => {
+  const { Logo, New, BadgeNew, Beta, MenuButton, SearchButton } = Icons();
+
+  const menuList = [
+    { category: '채용' },
+    { category: '이벤트' },
+    { category: '직군별 연봉' },
+    { category: '이력서' },
+    { category: '커뮤니티', icon: <New /> },
+    { category: '프리랜서' },
+    { category: 'AI 합격예측', icon: <Beta /> }
+  ];
+
   return (
     <div className="MainBar">
       <nav className="MainBar_nav">
@@ -22,7 +25,7 @@ const GlobalNavigationBar = () => {
           </button>
           <a href="/">
             <div className="logo">
-              <img src="/assets/icons/logo_wanted.svg" alt="원티드 로고" />
+              <Logo />
             </div>
           </a>
         </div>
@@ -33,11 +36,7 @@ const GlobalNavigationBar = () => {
           {menuList.map((item, index) => (
             <li key={index} className="MainBar_menu_item">
               <a href="/">{item.category}</a>
-              {item.iconPath && (
-                <em>
-                  <img src={item.iconPath} />
-                </em>
-              )}
+              {item.icon && <strong>{item.icon}</strong>}
             </li>
           ))}
         </ul>
@@ -59,7 +58,7 @@ const GlobalNavigationBar = () => {
                   <div className="avatar_img"></div>
                 </div>
                 <div className="badge">
-                  <img src="/assets/icons/badge_new.svg" />
+                  <BadgeNew />
                 </div>
               </button>
             </li>
