@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "image": "/assets/image/main_banner/pre_onboarding.jpeg",
+    "title": "나도 개발자 되고 싶다",
+    "info": "프론트엔드 무료 교육과정 참여하기"
+  },
+  {
+    "id": "2",
+    "image": "/assets/image/main_banner/careertalk.jpeg",
+    "title": "요즘 MD가 일하는 방법",
+    "info": "실무자가 공개하는 MD 커리어의 모든 것!"
+  },
+  {
+    "id": "3",
+    "image": "/assets/image/main_banner/velog.jpeg",
+    "title": "개발자 성장 비결 공개!",
+    "info": "글 쓰는 개발자들의 이야기"
+  },
+  {
+    "id": "4",
+    "image": "/assets/image/main_banner/starbucks_design.jpeg",
+    "title": "스타벅스 굿즈 좋아하세요?",
+    "info": "사랑받는 디자인의 비밀"
+  },
+  {
+    "id": "5",
+    "image": "/assets/image/main_banner/livetalk.jpeg",
+    "title": "마케터를 위한 데이터",
+    "info": "잘 나가는 마케터는 무엇이 다를까!?"
+  },
+  {
+    "id": "6",
+    "image": "/assets/image/main_banner/git_github.jpeg",
+    "title": "Git? GitHub?",
+    "info": "협업 필수 도구 마스터하기"
+  },
+  {
+    "id": "7",
+    "image": "/assets/image/main_banner/youtube_career.jpeg",
+    "title": "해, 커리어 EP 02 공개",
+    "info": "최종 발표를 위한 마지막 관문 2라운드의 승자는?"
+  },
+  {
+    "id": "8",
+    "image": "/assets/image/main_banner/product_design.jpeg",
+    "title": "유저 경험을 설계하라!",
+    "info": "문제를 해결하는 프로덕트 디자인"
+  },
+  {
+    "id": "9",
+    "image": "/assets/image/main_banner/recruit.jpeg",
+    "title": "아는 만큼 보인다!",
+    "info": "노동법 '채용' 시리즈"
+  },
+  {
+    "id": "10",
+    "image": "/assets/image/main_banner/data_team.jpeg",
+    "title": "믿을 것은 데이터 뿐!",
+    "info": "요즘 데이터팀은 어떻게 일할까?"
+  },
+  {
+    "id": "11",
+    "image": "/assets/image/main_banner/career_guide.jpeg",
+    "title": "리크루터 커리어 가이드",
+    "info": "싼마이 리크루터가 되지 않기 위해"
+  }
+]
