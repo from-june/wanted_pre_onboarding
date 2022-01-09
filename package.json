@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pak-fuse/preonboarding-FE-wanted.git"
+    "url": "git+https://github.com/pak-fuse/preonboarding-frontend-wanted.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pak-fuse/preonboarding-FE-wanted/issues"
+    "url": "https://github.com/pak-fuse/preonboarding-frontend-wanted/issues"
   },
-  "homepage": "https://github.com/pak-fuse/preonboarding-FE-wanted#readme",
+  "homepage": "https://github.com/pak-fuse/preonboarding-frontend-wanted#readme",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -26,12 +26,13 @@
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@svgr/webpack": "^6.1.2",
     "babel-loader": "^8.2.2",
-    "style-loader": "^3.3.1",
     "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.3.2",
+    "style-loader": "^3.3.1",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.0.0",
-    "html-webpack-plugin": "^5.3.2"
+    "webpack-dev-server": "^4.0.0"
   }
 }
