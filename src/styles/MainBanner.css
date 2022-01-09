@@ -1,0 +1,54 @@
+.Main {
+  position: relative;
+  padding-top: 75px;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-track {
+  padding: 0 50px;
+}
+
+.slide-list {
+  display: flex;
+  transform: translateX(-1036px);
+}
+
+.slide {
+  padding: 0 12px;
+  filter: brightness(50%);
+  transition: all 0.4s ease-in-out;
+}
+
+.slide.active {
+  filter: brightness(100%);
+}
+
+.slide img {
+  display: block;
+  border-radius: 4px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 52%;
+  width: 30px;
+  height: 60px;
+  opacity: 0.5;
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+.prev-arrow {
+  left: calc((100% - 1210px) / 2);
+}
+
+.next-arrow {
+  right: calc((100% - 1200px) / 2);
+}
