@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import Icons from 'components/Icons';
 import mainBanner from 'data/mainbanner.json';
 
@@ -6,11 +6,19 @@ import 'styles/MainBanner.css';
 
 const MainBanner = () => {
   const { PrevButton, NextButton } = Icons();
+  const [centerMode, setCenterMode] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const slideStyle = {
+  const slideTranslate = {
     transform: `translate3d(-${currentSlide * 100}%, 0, 0)`
   };
+
+  useLayoutEffect(() => {
+    const browserWidth = window.innerWidth;
+    setCenterMode({
+      transform: `translateX(-${1146 - (browserWidth - 1060) / 2}px)`
+    });
+  }, []);
 
   const slideList = () => {
     if (mainBanner.length > 1) {
@@ -18,7 +26,7 @@ const MainBanner = () => {
         <li
           key={data.title}
           className={`slide ${index === currentSlide ? 'active' : ''}`}
-          style={{ ...slideStyle }}
+          style={{ ...slideTranslate }}
         >
           <a href="/">
             <img src={data.image} />
@@ -30,7 +38,7 @@ const MainBanner = () => {
         <li
           key={`${mainBanner[mainBanner.length - 1].title} prev clone`}
           className={`slide`}
-          style={{ ...slideStyle }}
+          style={{ ...slideTranslate }}
         >
           <a href="/">
             <img src={mainBanner[mainBanner.length - 1].image} />
@@ -40,7 +48,7 @@ const MainBanner = () => {
         <li
           key={`${mainBanner[0].title} next clone`}
           className={`slide`}
-          style={{ ...slideStyle }}
+          style={{ ...slideTranslate }}
         >
           <a href="/">
             <img src={mainBanner[0].image} />
@@ -53,7 +61,7 @@ const MainBanner = () => {
       <li
         key={img.id}
         className={`slide ${index === currentSlide ? 'active' : null}`}
-        style={{ ...slideStyle }}
+        style={{ ...slideTranslate }}
       >
         <a href="/">
           <img src={mainBanner[0].image} />
@@ -76,7 +84,9 @@ const MainBanner = () => {
     <main className="Main">
       <div className="slider">
         <div className="slider-track">
-          <ul className="slide-list">{slideList()}</ul>
+          <ul className="slide-list" style={{ ...centerMode }}>
+            {slideList()}
+          </ul>
         </div>
       </div>
       <button className="prev-arrow button" onClick={onPrevClick}>
