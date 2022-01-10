@@ -16,21 +16,6 @@
   display: flex;
 }
 
-.slide {
-  padding: 0 12px;
-  filter: brightness(50%);
-  transition: all 0.4s ease-in-out;
-}
-
-.slide.active {
-  filter: brightness(100%);
-}
-
-.slide img {
-  display: block;
-  border-radius: 4px;
-}
-
 .button {
   display: flex;
   align-items: center;
