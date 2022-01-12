@@ -1,17 +1,20 @@
-import React, { useLayoutEffect, useState } from 'react';
-import Icons from 'components/Icons';
-import SlideItem from 'components/SlideItem';
+import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import mainBanner from 'data/mainbanner.json';
+import Icons from 'components/Icons';
 
 import 'styles/MainBanner.css';
+import { renderSlideList } from 'components/renderSlideList';
 
 const MainBanner = () => {
   const { PrevButton, NextButton } = Icons();
+
+  const slideList = mainBanner;
+  const slideCount = slideList.length;
+  const slideListRef = useRef();
+
   const [centerMode, setCenterMode] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  let slideList = mainBanner;
-  const slideCount = slideList.length;
+  const [jump, setJump] = useState(false);
 
   useLayoutEffect(() => {
     const browserWidth = window.innerWidth;
@@ -21,58 +24,53 @@ const MainBanner = () => {
     });
   }, []);
 
-  const renderSlideList = () => {
-    slideList = [].concat(slideList, slideList, slideList);
+  useEffect(() => {
+    const onTransitionEnd = () => {
+      if (currentSlide >= slideCount) {
+        setJump(true);
+        setCurrentSlide(0);
+      }
+      if (currentSlide <= -1) {
+        setJump(true);
+        setCurrentSlide(slideCount - 1);
+      }
+    };
+    slideListRef.current.addEventListener('transitionend', onTransitionEnd);
 
-    if (slideCount > 1) {
-      const slideItems = slideList.map((data, index) => (
-        <SlideItem
-          key={index}
-          data={data}
-          index={index}
-          currentSlide={currentSlide}
-        />
-      ));
+    return () =>
+      slideListRef.current.removeEventListener(
+        'transitionend',
+        onTransitionEnd
+      );
+  }, [currentSlide, slideCount]);
 
-      return [
-        <SlideItem
-          key={`${slideList[slideCount - 1].title} prev clone`}
-          data={slideList[slideCount - 1]}
-          index={currentSlide - 1}
-          currentSlide={currentSlide}
-        />,
-        ...slideItems,
-        <SlideItem
-          key={`${slideList[0].title} next clone`}
-          data={slideList[0]}
-          index={currentSlide + 1}
-          currentSlide={currentSlide}
-        />
-      ];
-    }
+  const changeCurrent = amount => {
+    setCurrentSlide(prev => prev + amount);
+    setJump(false);
   };
 
-  const onPrevClick = () => {
-    setCurrentSlide(prev => prev - 1);
-  };
-
-  const onNextClick = () => {
-    setCurrentSlide(prev => prev + 1);
+  const slideListStyle = {
+    transform: `translateX(-${(slideCount + currentSlide) * 1084}px)`,
+    transition: `${jump ? 'none' : 'all 350ms ease-in-out'}`
   };
 
   return (
     <main className="Main">
       <div className="slider">
-        <div className="slider-track">
-          <ul className="slide-list" style={{ ...centerMode }}>
-            {renderSlideList()}
+        <div className="slider-track" style={{ ...centerMode }}>
+          <ul
+            className="slide-list"
+            style={{ ...slideListStyle }}
+            ref={slideListRef}
+          >
+            {renderSlideList(slideList, slideCount, currentSlide)}
           </ul>
         </div>
       </div>
-      <button className="prev-arrow button" onClick={onPrevClick}>
+      <button className="prev-arrow button" onClick={() => changeCurrent(-1)}>
         <PrevButton />
       </button>
-      <button className="next-arrow button" onClick={onNextClick}>
+      <button className="next-arrow button" onClick={() => changeCurrent(1)}>
         <NextButton />
       </button>
     </main>

@@ -1,7 +1,6 @@
 .slide {
   padding: 0 12px;
   filter: brightness(50%);
-  transition: all 0.4s ease-in-out;
 }
 
 .slide.active {

@@ -3,15 +3,12 @@ import React from 'react';
 
 import 'styles/SlideItem.css';
 
-const SlideItem = ({ data, index, currentSlide }) => {
+const SlideItem = ({ data, index, current }) => {
   const { NextButton } = Icons();
-  const slideTranslate = {
-    transform: `translate3d(${-currentSlide * 100}%, 0, 0)`
-  };
-  const active = index === currentSlide;
+  const active = index === current;
 
   return (
-    <li className={`slide ${active && 'active'}`} style={{ ...slideTranslate }}>
+    <li className={`slide ${active && 'active'}`}>
       <div className="slide_image">
         <a href="/">
           <img src={data.image} />
