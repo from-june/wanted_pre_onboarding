@@ -2,11 +2,13 @@ import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import mainBanner from 'data/mainbanner.json';
 import Icons from 'components/Icons';
 import { renderSlideList } from 'components/slide/renderSlideList';
+import useGetClientWidth from 'components/modules/useGetClientWidth';
 
 import 'styles/slide/MainBanner.css';
 
 const MainBanner = () => {
   const { PrevButton, NextButton } = Icons();
+  const { navBarWidth } = useGetClientWidth();
 
   const slideList = mainBanner;
   const slideCount = slideList.length;
@@ -17,11 +19,13 @@ const MainBanner = () => {
   const [jump, setJump] = useState(false);
   const [dragStart, setDragStart] = useState(null);
 
-  useLayoutEffect(() => {
-    const browserWidth = window.innerWidth;
+  const browserWidth = window.innerWidth;
 
+  useLayoutEffect(() => {
     setCenterMode({
-      transform: `translateX(-${1146 - (browserWidth - 1060) / 2}px)`
+      transform: `translateX(-${
+        navBarWidth + 86 - (browserWidth - navBarWidth) / 2
+      }px)`
     });
   }, []);
 
@@ -47,7 +51,9 @@ const MainBanner = () => {
   }, [currentSlide, slideCount]);
 
   const slideListStyle = {
-    transform: `translateX(-${(slideCount + currentSlide) * 1084}px)`,
+    transform: `translateX(-${
+      (slideCount + currentSlide) * (navBarWidth + 24)
+    }px)`,
     transition: `${jump ? 'none' : 'all 350ms ease-in-out'}`
   };
 
@@ -66,7 +72,8 @@ const MainBanner = () => {
       if (dragStart === null) return;
 
       slideListRef.current.style.transform = `translateX(-${
-        (slideCount + currentSlide) * 1084 - (event.clientX - dragStart)
+        (slideCount + currentSlide) * (navBarWidth + 24) -
+        (event.clientX - dragStart)
       }px)`;
     };
 

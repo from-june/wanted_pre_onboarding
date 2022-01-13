@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import Icons from 'components/Icons';
 import MainBarAside from 'components/navigation/MainBarAside';
+import useGetClientWidth from 'components/modules/useGetClientWidth';
 
 import 'styles/navigation/GlobalNavigationBar.css';
 
 const GlobalNavigationBar = () => {
   const { Logo, New, Beta } = Icons();
+  const navRef = useRef();
+  const { setNavBarWidth } = useGetClientWidth();
+
+  useLayoutEffect(() => {
+    setNavBarWidth(navRef.current.clientWidth);
+  }, []);
 
   const menuList = [
     { category: '채용' },
@@ -19,7 +26,7 @@ const GlobalNavigationBar = () => {
 
   return (
     <div className="MainBar">
-      <nav className="MainBar_nav">
+      <nav className="MainBar_nav" ref={navRef}>
         <div className="MainBar_top">
           <button className="MainBar_top-hamburger">
             <img src="/assets/icons/icon-menu.png" alt="햄버거 메뉴" />
