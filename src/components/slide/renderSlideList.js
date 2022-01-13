@@ -1,5 +1,5 @@
 import React, { cloneElement } from 'react';
-import SlideItem from 'components/SlideItem';
+import SlideItem from 'components/slide/SlideItem';
 
 export const renderSlideList = (list, count, current) => {
   let slideListTrack = list.map((data, index) => (

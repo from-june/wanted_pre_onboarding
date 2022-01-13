@@ -1,9 +1,9 @@
 import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import mainBanner from 'data/mainbanner.json';
 import Icons from 'components/Icons';
+import { renderSlideList } from 'components/slide/renderSlideList';
 
-import 'styles/MainBanner.css';
-import { renderSlideList } from 'components/renderSlideList';
+import 'styles/slide/MainBanner.css';
 
 const MainBanner = () => {
   const { PrevButton, NextButton } = Icons();
@@ -44,14 +44,14 @@ const MainBanner = () => {
       );
   }, [currentSlide, slideCount]);
 
-  const changeCurrent = amount => {
-    setCurrentSlide(prev => prev + amount);
-    setJump(false);
-  };
-
   const slideListStyle = {
     transform: `translateX(-${(slideCount + currentSlide) * 1084}px)`,
     transition: `${jump ? 'none' : 'all 350ms ease-in-out'}`
+  };
+
+  const changeCurrent = amount => {
+    setCurrentSlide(prev => prev + amount);
+    setJump(false);
   };
 
   return (

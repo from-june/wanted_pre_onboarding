@@ -1,7 +1,7 @@
-import Icons from 'components/Icons';
 import React from 'react';
+import Icons from 'components/Icons';
 
-import 'styles/SlideItem.css';
+import 'styles/slide/SlideItem.css';
 
 const SlideItem = ({ data, index, current }) => {
   const { NextButton } = Icons();

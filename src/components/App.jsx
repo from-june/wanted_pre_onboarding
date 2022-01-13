@@ -1,6 +1,6 @@
 import React from 'react';
-import GlobalNavigationBar from 'components/GlobalNavigationBar';
-import MainBanner from 'components/MainBanner';
+import GlobalNavigationBar from 'components/navigation/GlobalNavigationBar';
+import MainBanner from 'components/slide/MainBanner';
 
 import 'styles/App.css';
 

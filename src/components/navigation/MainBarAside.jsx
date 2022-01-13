@@ -1,6 +1,8 @@
 import React from 'react';
 import Icons from 'components/Icons';
 
+import 'styles/navigation/MainBarAside.css';
+
 const MainBarAside = () => {
   const { BadgeNew } = Icons();
 

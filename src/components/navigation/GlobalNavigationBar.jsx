@@ -1,8 +1,8 @@
 import React from 'react';
-
-import 'styles/GlobalNavigationBar.css';
 import Icons from 'components/Icons';
-import MainBarAside from 'components/MainBarAside';
+import MainBarAside from 'components/navigation/MainBarAside';
+
+import 'styles/navigation/GlobalNavigationBar.css';
 
 const GlobalNavigationBar = () => {
   const { Logo, New, Beta } = Icons();

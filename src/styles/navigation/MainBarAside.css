@@ -1,77 +1,3 @@
-.MainBar {
-  background-color: #ffffff;
-  width: 100%;
-  height: 50px;
-  position: fixed;
-  z-index: 2;
-  border-bottom: 1px solid rgb(0 0 0 / 10%);
-}
-
-.MainBar_nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1060px;
-  height: 100%;
-  margin: 0 auto;
-}
-
-.MainBar_top {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.MainBar_top-hamburger {
-  width: 17px;
-  height: 14px;
-  padding: 0;
-  margin-right: 15px;
-}
-
-.MainBar_top-hamburger img {
-  display: block;
-  width: 100%;
-}
-
-.MainBar_top .logo img {
-  height: 17px;
-}
-
-.MainBar_menu {
-  display: flex;
-  justify-content: space-evenly;
-  height: 100%;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.MainBar_menu_item,
-.MainBar_menu_item a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.MainBar_menu_item a {
-  padding: 15px;
-}
-
-.MainBar_menu_item a:hover {
-  box-shadow: inset 0 -2px #ddd;
-}
-
-.MainBar_menu_item:first-child a {
-  padding-left: 0;
-}
-
-.MainBar_menu_item strong {
-  position: absolute;
-  top: 11px;
-  right: -6px;
-}
-
 .MainBar_aside_buttons {
   display: flex;
   align-items: center;
@@ -162,8 +88,4 @@
   padding: 0 10px;
   margin-left: 15px;
   font-weight: 400;
-}
-
-.hidden {
-  display: none;
 }
