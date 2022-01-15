@@ -70,3 +70,6 @@
   fill: #36f;
   font-size: inherit;
 }
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+}

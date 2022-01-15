@@ -17,11 +17,11 @@ const GlobalNavigationBar = () => {
   const menuList = [
     { category: '채용' },
     { category: '이벤트' },
-    { category: '직군별 연봉' },
-    { category: '이력서' },
-    { category: '커뮤니티', icon: <New /> },
-    { category: '프리랜서' },
-    { category: 'AI 합격예측', icon: <Beta /> }
+    { category: '직군별 연봉', desktop: true },
+    { category: '이력서', desktop: true },
+    { category: '커뮤니티', icon: <New />, desktop: true },
+    { category: '프리랜서', desktop: true },
+    { category: 'AI 합격예측', icon: <Beta />, desktop: true }
   ];
 
   return (
@@ -38,11 +38,16 @@ const GlobalNavigationBar = () => {
           </a>
         </div>
         <ul className="MainBar_menu">
-          <li className="MainBar_menu_item hidden">
+          <li className="MainBar_menu_item menu_home">
             <a href="/">홈</a>
           </li>
           {menuList.map((item, index) => (
-            <li key={index} className="MainBar_menu_item">
+            <li
+              key={index}
+              className={`MainBar_menu_item ${
+                item.desktop ? 'menu_desktop' : ''
+              }`}
+            >
               <a href="/">{item.category}</a>
               {item.icon && <strong>{item.icon}</strong>}
             </li>

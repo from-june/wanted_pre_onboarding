@@ -89,3 +89,32 @@
   margin-left: 15px;
   font-weight: 400;
 }
+
+.Mobile {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .Mobile {
+    display: inline-block;
+  }
+
+  .MainBar_aside_buttons li:nth-child(3),
+  .MainBar_aside_buttons li:nth-child(4) {
+    display: none;
+  }
+
+  .MainBar_aside_item button {
+    padding: 0 5px;
+  }
+
+  .MainBar_aside_item .alertbutton {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .MainBar_aside_buttons:last-child button {
+    margin-right: 10px;
+  }
+}

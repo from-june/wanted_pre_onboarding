@@ -1,10 +1,10 @@
 .MainBar {
-  background-color: #ffffff;
-  width: 100%;
-  height: 50px;
   position: fixed;
-  z-index: 2;
+  width: 100vw;
+  height: 50px;
+  background-color: #ffffff;
   border-bottom: 1px solid rgb(0 0 0 / 10%);
+  z-index: 2;
 }
 
 .MainBar_nav {
@@ -26,6 +26,7 @@
   width: 17px;
   height: 14px;
   padding: 0;
+  margin-top: -2px;
   margin-right: 15px;
 }
 
@@ -72,6 +73,75 @@
   right: -6px;
 }
 
-.hidden {
+.menu_home {
   display: none;
+}
+
+.menu_desktop {
+  display: inline-block;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .MainBar_nav {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .MainBar {
+    height: 110px;
+    margin: 0 auto;
+  }
+
+  .MainBar_nav {
+    width: 90%;
+    display: grid;
+    grid-template-areas:
+      'top top'
+      'list alert';
+  }
+
+  .MainBar_top {
+    width: 100%;
+    height: 60px;
+    padding: 15px 0;
+    margin-right: auto;
+    grid-area: top;
+  }
+
+  .MainBar_menu {
+    width: 100%;
+    grid-area: list;
+    font-size: 13px;
+  }
+
+  .MainBar_menu_item a {
+    padding: 11px 10px 19px;
+  }
+
+  .MainBar_menu_item strong {
+    top: 4px;
+    right: -7px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .MainBar_nav {
+    width: 100%;
+  }
+
+  .menu_home {
+    display: inline-block;
+  }
+
+  .menu_desktop {
+    display: none;
+  }
+
+  .MainBar_top {
+    padding: 15px 20px;
+  }
+
+  .MainBar_menu li:first-child {
+    padding-left: 20px;
+  }
 }

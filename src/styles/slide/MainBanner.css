@@ -36,3 +36,14 @@
 .next-arrow {
   right: calc((100% - 1200px) / 2);
 }
+
+@media screen and (max-width: 1199px) {
+  .slider-track {
+    padding: 0;
+  }
+
+  .button.prev-arrow,
+  .button.next-arrow {
+    display: none;
+  }
+}
