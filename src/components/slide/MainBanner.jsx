@@ -73,11 +73,6 @@ const MainBanner = () => {
     transition: `${jump ? 'none' : 'all 350ms ease-in-out'}`
   };
 
-  const changeCurrent = amount => {
-    setCurrentSlide(prev => prev + amount);
-    setJump(false);
-  };
-
   useEffect(() => {
     const startSwipe = event => {
       slideListRef.current.style.transition = 'none';
@@ -128,6 +123,22 @@ const MainBanner = () => {
       */
     };
   }, [dragStart]);
+
+  const changeCurrent = amount => {
+    setCurrentSlide(prev => prev + amount);
+    setJump(false);
+  };
+
+  useEffect(() => {
+    if (currentSlide >= slideCount) {
+      return () => clearTimeout(setAutoPlay);
+    }
+
+    const setAutoPlay = () => {
+      setTimeout(() => changeCurrent(1), 5000);
+    };
+    setAutoPlay();
+  }, [currentSlide, slideCount]);
 
   return (
     <main className="Main">
