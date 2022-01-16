@@ -1,6 +1,6 @@
 .Main {
   position: relative;
-  padding-top: 75px;
+  padding-top: 25px;
 }
 
 .slider {
@@ -14,6 +14,7 @@
 
 .slide-list {
   display: flex;
+  width: fit-content;
 }
 
 .button {
@@ -21,7 +22,7 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 52%;
+  top: 143px;
   width: 30px;
   height: 60px;
   opacity: 0.5;
@@ -38,8 +39,8 @@
 }
 
 @media screen and (max-width: 1199px) {
-  .slider-track {
-    padding: 0;
+  .Main {
+    padding-top: 0;
   }
 
   .button.prev-arrow,

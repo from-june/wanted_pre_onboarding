@@ -8,6 +8,7 @@ const App = () => {
   return (
     <>
       <GlobalNavigationBar />
+      <div className="padding"></div>
       <MainBanner />
     </>
   );

@@ -9,6 +9,7 @@ import 'styles/slide/MainBanner.css';
 const MainBanner = () => {
   const { PrevButton, NextButton } = Icons();
   const { navBarWidth } = useGetClientWidth();
+  const imageWidth = 1060;
 
   const slideList = mainBanner;
   const slideCount = slideList.length;
@@ -22,11 +23,15 @@ const MainBanner = () => {
   const browserWidth = window.innerWidth;
 
   useLayoutEffect(() => {
-    setCenterMode({
-      transform: `translateX(-${
-        navBarWidth + 86 - (browserWidth - navBarWidth) / 2
-      }px)`
-    });
+    if (browserWidth <= 1024) {
+      const sideLeft = (1084 - browserWidth) / 2;
+      setCenterMode(imageWidth + 86 + sideLeft);
+    }
+
+    if (browserWidth > 1024) {
+      const sideLeft = (browserWidth - navBarWidth) / 2;
+      setCenterMode(navBarWidth + 86 - sideLeft);
+    }
   }, []);
 
   useEffect(() => {
@@ -52,7 +57,7 @@ const MainBanner = () => {
 
   const slideListStyle = {
     transform: `translateX(-${
-      (slideCount + currentSlide) * (navBarWidth + 24)
+      (slideCount + currentSlide) * (imageWidth + 24) + centerMode
     }px)`,
     transition: `${jump ? 'none' : 'all 350ms ease-in-out'}`
   };
@@ -103,7 +108,7 @@ const MainBanner = () => {
   return (
     <main className="Main">
       <div className="slider">
-        <div className="slider-track" style={{ ...centerMode }}>
+        <div className="slider-track">
           <ul
             className="slide-list"
             style={{ ...slideListStyle }}

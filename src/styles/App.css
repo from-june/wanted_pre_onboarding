@@ -1,1 +1,13 @@
 @import url('styles/reset.css');
+
+@media screen and (min-width: 992px) {
+  .padding {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .padding {
+    height: 110px;
+  }
+}
