@@ -20,18 +20,29 @@ const MainBanner = () => {
   const [jump, setJump] = useState(false);
   const [dragStart, setDragStart] = useState(null);
 
-  const browserWidth = window.innerWidth;
+  const handleCenter = width => {
+    const BREAK_POINT = 1030;
 
-  useLayoutEffect(() => {
-    if (browserWidth <= 1024) {
-      const sideLeft = (1084 - browserWidth) / 2;
+    if (width <= BREAK_POINT) {
+      const sideLeft = (1084 - width) / 2;
       setCenterMode(imageWidth + 86 + sideLeft);
     }
 
-    if (browserWidth > 1024) {
-      const sideLeft = (browserWidth - navBarWidth) / 2;
+    if (width > BREAK_POINT) {
+      const sideLeft = (width - navBarWidth) / 2;
       setCenterMode(navBarWidth + 86 - sideLeft);
     }
+  };
+
+  useLayoutEffect(() => {
+    const initialWidth = window.innerWidth;
+    handleCenter(initialWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', event => {
+      handleCenter(event.target.innerWidth);
+    });
   }, []);
 
   useEffect(() => {
@@ -77,7 +88,8 @@ const MainBanner = () => {
       if (dragStart === null) return;
 
       slideListRef.current.style.transform = `translateX(-${
-        (slideCount + currentSlide) * (navBarWidth + 24) -
+        (slideCount + currentSlide) * (imageWidth + 24) +
+        centerMode -
         (event.clientX - dragStart)
       }px)`;
     };
@@ -97,11 +109,23 @@ const MainBanner = () => {
     slideListRef.current.addEventListener('mouseleave', stopSwipe);
     slideListRef.current.addEventListener('mouseup', stopSwipe);
 
+    /* FIXME:
+    slideListRef.current.addEventListener('touchstart', startSwipe);
+    slideListRef.current.addEventListener('touchmove', doSwipe);
+    slideListRef.current.addEventListener('touchend', stopSwipe);
+    */
+
     return () => {
       slideListRef.current.removeEventListener('mousedown', startSwipe);
       slideListRef.current.removeEventListener('mousemove', doSwipe);
       slideListRef.current.removeEventListener('mouseleave', stopSwipe);
       slideListRef.current.removeEventListener('mouseup', stopSwipe);
+
+      /* FIXME:
+      slideListRef.current.removeEventListener('touchstart', startSwipe);
+      slideListRef.current.removeEventListener('touchmove', doSwipe);
+      slideListRef.current.removeEventListener('touchend', stopSwipe);
+      */
     };
   }, [dragStart]);
 
