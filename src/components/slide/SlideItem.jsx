@@ -1,11 +1,13 @@
 import React from 'react';
 import Icons from 'components/Icons';
+import useGetClientWidth from 'components/modules/useGetClientWidth';
 
 import 'styles/slide/SlideItem.css';
 
 const SlideItem = ({ data, index, current }) => {
   const { NextButton } = Icons();
   const active = index === current;
+  const { navBarWidth } = useGetClientWidth();
 
   return (
     <li className={`slide ${active && 'active'}`}>

@@ -25,7 +25,7 @@ const MainBanner = () => {
 
     if (width <= BREAK_POINT) {
       const sideLeft = (1084 - width) / 2;
-      setCenterMode(imageWidth + 86 + sideLeft);
+      setCenterMode(imageWidth + 74 + sideLeft);
     }
 
     if (width > BREAK_POINT) {
@@ -129,16 +129,16 @@ const MainBanner = () => {
     setJump(false);
   };
 
+  /* FIXME: A problem after clicking the next button or doing swipe.
   useEffect(() => {
+    const setAutoPlay = () => setTimeout(() => changeCurrent(1), 5000);
+
     if (currentSlide >= slideCount) {
       return () => clearTimeout(setAutoPlay);
     }
-
-    const setAutoPlay = () => {
-      setTimeout(() => changeCurrent(1), 5000);
-    };
     setAutoPlay();
-  }, [currentSlide, slideCount]);
+  }, [currentSlide]);
+*/
 
   return (
     <main className="Main">
