@@ -96,8 +96,9 @@ const MainBanner = () => {
 
       slideListRef.current.style.transition = CONST.SLIDE_TRANSITION;
 
+      const MAXIMUM = 100;
       const displacement = dragStart - event.clientX;
-      if (Math.abs(displacement) > 200) {
+      if (Math.abs(displacement) > MAXIMUM) {
         if (displacement > 0) changeCurrent(1);
         if (displacement < 0) changeCurrent(-1);
       } else {
