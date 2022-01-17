@@ -4,7 +4,7 @@ import Icons from 'components/Icons';
 import 'styles/navigation/MainBarAside.css';
 
 const MainBarAside = () => {
-  const { BadgeNew, MenuButton } = Icons();
+  const { BadgeNew } = Icons();
 
   return (
     <aside className="MainBar_aside">
