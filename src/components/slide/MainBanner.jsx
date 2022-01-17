@@ -114,37 +114,13 @@ const MainBanner = () => {
     slideListRef.current.addEventListener('mouseleave', stopSwipe);
     slideListRef.current.addEventListener('mouseup', stopSwipe);
 
-    /* FIXME:
-    slideListRef.current.addEventListener('touchstart', startSwipe);
-    slideListRef.current.addEventListener('touchmove', doSwipe);
-    slideListRef.current.addEventListener('touchend', stopSwipe);
-    */
-
     return () => {
       slideListRef.current.removeEventListener('mousedown', startSwipe);
       slideListRef.current.removeEventListener('mousemove', doSwipe);
       slideListRef.current.removeEventListener('mouseleave', stopSwipe);
       slideListRef.current.removeEventListener('mouseup', stopSwipe);
-
-      /* FIXME:
-      slideListRef.current.removeEventListener('touchstart', startSwipe);
-      slideListRef.current.removeEventListener('touchmove', doSwipe);
-      slideListRef.current.removeEventListener('touchend', stopSwipe);
-      */
     };
   }, [dragStart]);
-
-  /* FIXME: A problem after clicking the next button or doing swipe.
-  
-  useEffect(() => {
-    const setAutoPlay = () => setTimeout(() => changeCurrent(1), 5000);
-
-    if (currentSlide >= slideCount) {
-      return () => clearTimeout(setAutoPlay);
-    }
-    setAutoPlay();
-  }, [currentSlide]);
-*/
 
   const slideListStyle = {
     transform: `translateX(-${offset + centerMode}px)`,
