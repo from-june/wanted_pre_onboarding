@@ -1,6 +1,7 @@
 import { atom, useAtom } from 'jotai';
+import { IMAGE_WIDTH } from 'components/utility/constants';
 
-const imageWidth = atom(1060);
+const imageWidth = atom(IMAGE_WIDTH);
 
 const useGetClientWidth = () => {
   const [navBarWidth, setNavBarWidth] = useAtom(imageWidth);
