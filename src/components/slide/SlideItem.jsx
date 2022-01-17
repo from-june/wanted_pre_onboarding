@@ -10,7 +10,7 @@ const SlideItem = ({ data, index, current }) => {
   return (
     <li className={`slide ${active && 'active'}`}>
       <div className="slide_image">
-        <a href="/">
+        <a href="/" onClick={active ? event => event.preventDefault() : null}>
           <img src={data.image} alt="메인 배너 이미지" />
         </a>
       </div>

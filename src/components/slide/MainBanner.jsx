@@ -1,31 +1,38 @@
 import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
-import mainBanner from 'data/mainbanner.json';
-import Icons from 'components/Icons';
+import slideList from 'data/mainbanner.json';
 import { renderSlideList } from 'components/slide/renderSlideList';
 import useGetClientWidth from 'components/modules/useGetClientWidth';
 
+import * as CONST from 'components/utility/constants';
+
 import 'styles/slide/MainBanner.css';
+import Icons from 'components/Icons';
 
 const MainBanner = () => {
-  const { PrevButton, NextButton } = Icons();
-  const { navBarWidth } = useGetClientWidth();
-  const imageWidth = 1060;
-
-  const slideList = mainBanner;
-  const slideCount = slideList.length;
-  const slideListRef = useRef();
-
   const [centerMode, setCenterMode] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [jump, setJump] = useState(false);
   const [dragStart, setDragStart] = useState(null);
+  const slideListRef = useRef();
+
+  const slideCount = slideList.length;
+  const slideOuterWidth = CONST.IMAGE_WIDTH + CONST.SLIDE_MARGIN;
+  const offset = (slideCount + currentSlide) * slideOuterWidth;
+
+  const { PrevButton, NextButton } = Icons();
+  const { navBarWidth } = useGetClientWidth();
+
+  const changeCurrent = amount => {
+    setCurrentSlide(prev => prev + amount);
+    setJump(false);
+  };
 
   const handleCenter = width => {
     const BREAK_POINT = 1030;
 
     if (width <= BREAK_POINT) {
-      const sideLeft = (1084 - width) / 2;
-      setCenterMode(imageWidth + 74 + sideLeft);
+      const sideLeft = (slideOuterWidth - width) / 2;
+      setCenterMode(CONST.IMAGE_WIDTH + 74 + sideLeft);
     }
 
     if (width > BREAK_POINT) {
@@ -64,37 +71,40 @@ const MainBanner = () => {
         'transitionend',
         onTransitionEnd
       );
-  }, [currentSlide, slideCount]);
-
-  const slideListStyle = {
-    transform: `translateX(-${
-      (slideCount + currentSlide) * (imageWidth + 24) + centerMode
-    }px)`,
-    transition: `${jump ? 'none' : 'all 350ms ease-in-out'}`
-  };
+  }, [currentSlide]);
 
   useEffect(() => {
     const startSwipe = event => {
+      event.preventDefault();
       slideListRef.current.style.transition = 'none';
       setDragStart(event.clientX);
     };
 
     const doSwipe = event => {
+      event.preventDefault();
       if (dragStart === null) return;
 
+      const draggedX = event.clientX - dragStart;
+
       slideListRef.current.style.transform = `translateX(-${
-        (slideCount + currentSlide) * (imageWidth + 24) +
-        centerMode -
-        (event.clientX - dragStart)
+        offset + centerMode - draggedX
       }px)`;
     };
 
     const stopSwipe = event => {
       if (dragStart === null) return;
 
-      slideListRef.current.style.transition = 'all 350ms ease-in-out';
-      if (dragStart > event.clientX) changeCurrent(1);
-      if (dragStart < event.clientX) changeCurrent(-1);
+      slideListRef.current.style.transition = CONST.SLIDE_TRANSITION;
+
+      const displacement = dragStart - event.clientX;
+      if (Math.abs(displacement) > 200) {
+        if (displacement > 0) changeCurrent(1);
+        if (displacement < 0) changeCurrent(-1);
+      } else {
+        slideListRef.current.style.transform = `translateX(-${
+          offset + centerMode
+        }px)`;
+      }
 
       setDragStart(null);
     };
@@ -124,12 +134,8 @@ const MainBanner = () => {
     };
   }, [dragStart]);
 
-  const changeCurrent = amount => {
-    setCurrentSlide(prev => prev + amount);
-    setJump(false);
-  };
-
   /* FIXME: A problem after clicking the next button or doing swipe.
+  
   useEffect(() => {
     const setAutoPlay = () => setTimeout(() => changeCurrent(1), 5000);
 
@@ -140,15 +146,16 @@ const MainBanner = () => {
   }, [currentSlide]);
 */
 
+  const slideListStyle = {
+    transform: `translateX(-${offset + centerMode}px)`,
+    transition: `${jump ? 'none' : CONST.SLIDE_TRANSITION}`
+  };
+
   return (
     <main className="Main">
       <div className="slider">
         <div className="slider-track">
-          <ul
-            className="slide-list"
-            style={{ ...slideListStyle }}
-            ref={slideListRef}
-          >
+          <ul className="slide-list" style={slideListStyle} ref={slideListRef}>
             {renderSlideList(slideList, slideCount, currentSlide)}
           </ul>
         </div>
