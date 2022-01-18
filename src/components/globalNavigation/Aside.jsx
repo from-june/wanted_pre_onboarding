@@ -1,25 +1,25 @@
 import React from 'react';
 import Icons from 'components/Icons';
 
-import 'styles/navigation/MainBarAside.css';
+import 'styles/globalNavigation/Aside.css';
 
-const MainBarAside = () => {
+const Aside = () => {
   const { BadgeNew } = Icons();
 
   return (
-    <aside className="MainBar_aside">
-      <ul className="MainBar_aside_buttons">
-        <li className="MainBar_aside_item">
+    <aside className="Aside">
+      <ul className="Aside_buttons">
+        <li className="Aside_item">
           <button>
             <img src="/assets/icons/searchbutton.svg" alt="검색 버튼" />
           </button>
         </li>
-        <li className="MainBar_aside_item">
+        <li className="Aside_item">
           <button className="alertbutton">
             <img src="/assets/icons/alertbutton.svg" alt="알림 버튼" />
           </button>
         </li>
-        <li className="MainBar_aside_item">
+        <li className="Aside_item">
           <button className="MainBar_profile">
             <div className="avatar-border">
               <div className="avatar_img"></div>
@@ -58,4 +58,4 @@ const MainBarAside = () => {
   );
 };
 
-export default MainBarAside;
+export default Aside;

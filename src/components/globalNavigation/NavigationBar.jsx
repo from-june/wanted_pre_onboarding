@@ -1,11 +1,11 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import Icons from 'components/Icons';
-import MainBarAside from 'components/navigation/MainBarAside';
+import Aside from 'components/globalNavigation/Aside';
 import useGetClientWidth from 'components/modules/useGetClientWidth';
 
-import 'styles/navigation/GlobalNavigationBar.css';
+import 'styles/globalNavigation/NavigationBar.css';
 
-const GlobalNavigationBar = () => {
+const NavigationBar = () => {
   const { Logo, New, Beta } = Icons();
   const navRef = useRef();
   const { setNavBarWidth } = useGetClientWidth();
@@ -53,10 +53,10 @@ const GlobalNavigationBar = () => {
             </li>
           ))}
         </ul>
-        <MainBarAside />
+        <Aside />
       </nav>
     </div>
   );
 };
 
-export default GlobalNavigationBar;
+export default NavigationBar;

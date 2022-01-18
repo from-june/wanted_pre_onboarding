@@ -1,25 +1,25 @@
-.MainBar_aside_buttons {
+.Aside_buttons {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-.MainBar_aside_item {
+.Aside_item {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.MainBar_aside_item button {
+.Aside_item button {
   margin-top: 5px;
   padding: 0 10px;
 }
 
-.MainBar_aside_item .alertbutton {
+.Aside_item .alertbutton {
   margin-right: 10px;
 }
 
-.MainBar_aside_item .MainBar_profile {
+.Aside_item .MainBar_profile {
   margin: 0;
   margin-right: 13px;
   padding: 0;
@@ -46,7 +46,7 @@
   background-repeat: no-repeat;
 }
 
-.MainBar_aside_item .badge {
+.Aside_item .badge {
   position: absolute;
   top: -2px;
   left: 22px;
@@ -99,22 +99,22 @@
     display: inline-block;
   }
 
-  .MainBar_aside_buttons li:nth-child(3),
-  .MainBar_aside_buttons li:nth-child(4) {
+  .Aside_buttons li:nth-child(3),
+  .Aside_buttons li:nth-child(4) {
     display: none;
   }
 
-  .MainBar_aside_item button {
+  .Aside_item button {
     padding: 0 5px;
   }
 
-  .MainBar_aside_item .alertbutton {
+  .Aside_item .alertbutton {
     margin-right: 0;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .MainBar_aside_buttons:last-child button {
+  .Aside_buttons:last-child button {
     margin-right: 10px;
   }
 }

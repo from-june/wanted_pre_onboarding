@@ -1,14 +1,14 @@
 import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
-import slideList from 'data/mainbanner.json';
+import slideList from 'data/mainSlider.json';
 import { renderSlideList } from 'components/slide/renderSlideList';
 import useGetClientWidth from 'components/modules/useGetClientWidth';
 
 import * as CONST from 'components/utility/constants';
 
-import 'styles/slide/MainBanner.css';
+import 'styles/slide/MainSlider.css';
 import Icons from 'components/Icons';
 
-const MainBanner = () => {
+const MainSlider = () => {
   const [centerMode, setCenterMode] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [jump, setJump] = useState(false);
@@ -147,4 +147,4 @@ const MainBanner = () => {
   );
 };
 
-export default MainBanner;
+export default MainSlider;

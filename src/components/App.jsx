@@ -1,15 +1,15 @@
 import React from 'react';
-import GlobalNavigationBar from 'components/navigation/GlobalNavigationBar';
-import MainBanner from 'components/slide/MainBanner';
+import NavigationBar from 'components/globalNavigation/NavigationBar';
+import MainSlider from 'components/slide/MainSlider';
 
 import 'styles/App.css';
 
 const App = () => {
   return (
     <>
-      <GlobalNavigationBar />
+      <NavigationBar />
       <div className="padding"></div>
-      <MainBanner />
+      <MainSlider />
     </>
   );
 };
