@@ -4,6 +4,12 @@
   filter: brightness(50%);
 }
 
+@media screen and (max-width: 1199px) {
+  .slide {
+    width: calc(100vw - 100px);
+  }
+}
+
 .slide.active {
   filter: brightness(100%);
 }
