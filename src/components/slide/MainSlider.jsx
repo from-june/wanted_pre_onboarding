@@ -15,9 +15,13 @@ const MainSlider = () => {
   const [dragStart, setDragStart] = useState(null);
   const slideListRef = useRef();
 
-  const slideCount = slideList.length;
-  const slideOuterWidth = CONST.IMAGE_WIDTH + CONST.SLIDE_MARGIN;
-  const offset = (slideCount + currentSlide) * slideOuterWidth;
+  const browserWidth = window.innerWidth;
+
+  const slideListCount = slideList.length;
+  const slideOuterWidth =
+    (browserWidth >= 1200 ? CONST.IMAGE_WIDTH : browserWidth - 100) +
+    CONST.SLIDE_MARGIN * 2;
+  const slideListOffset = (slideListCount + currentSlide) * slideOuterWidth;
 
   const { PrevButton, NextButton } = Icons();
   const { navBarWidth } = useGetClientWidth();
@@ -28,39 +32,39 @@ const MainSlider = () => {
   };
 
   const handleCenter = width => {
-    const BREAK_POINT = 1030;
-
-    if (width <= BREAK_POINT) {
-      const sideLeft = (slideOuterWidth - width) / 2;
-      setCenterMode(CONST.IMAGE_WIDTH + 74 + sideLeft);
+    if (width < CONST.BREAK_POINT) {
+      setCenterMode(width - 100 + CONST.SLIDE_MARGIN * 3);
     }
 
-    if (width > BREAK_POINT) {
-      const sideLeft = (width - navBarWidth) / 2;
-      setCenterMode(navBarWidth + 86 - sideLeft);
+    if (width >= CONST.BREAK_POINT) {
+      const sideLeft = (width - CONST.IMAGE_WIDTH) / 2;
+      setCenterMode(
+        CONST.IMAGE_WIDTH +
+          (CONST.SLIDER_PADDING + CONST.SLIDE_MARGIN * 3) -
+          sideLeft
+      );
     }
   };
 
   useLayoutEffect(() => {
-    const initialWidth = window.innerWidth;
-    handleCenter(initialWidth);
+    handleCenter(browserWidth);
   }, []);
 
   useEffect(() => {
     window.addEventListener('resize', event => {
       handleCenter(event.target.innerWidth);
     });
-  }, []);
+  }, [window.innerWidth]);
 
   useEffect(() => {
     const onTransitionEnd = () => {
-      if (currentSlide >= slideCount) {
+      if (currentSlide >= slideListCount) {
         setJump(true);
         setCurrentSlide(0);
       }
       if (currentSlide <= -1) {
         setJump(true);
-        setCurrentSlide(slideCount - 1);
+        setCurrentSlide(slideListCount - 1);
       }
     };
 
@@ -87,7 +91,7 @@ const MainSlider = () => {
       const draggedX = event.clientX - dragStart;
 
       slideListRef.current.style.transform = `translateX(-${
-        offset + centerMode - draggedX
+        slideListOffset + centerMode - draggedX
       }px)`;
     };
 
@@ -103,7 +107,7 @@ const MainSlider = () => {
         if (displacement < 0) changeCurrent(-1);
       } else {
         slideListRef.current.style.transform = `translateX(-${
-          offset + centerMode
+          slideListOffset + centerMode
         }px)`;
       }
 
@@ -124,7 +128,7 @@ const MainSlider = () => {
   }, [dragStart]);
 
   const slideListStyle = {
-    transform: `translateX(-${offset + centerMode}px)`,
+    transform: `translateX(-${slideListOffset + centerMode}px)`,
     transition: `${jump ? 'none' : CONST.SLIDE_TRANSITION}`
   };
 
@@ -133,7 +137,7 @@ const MainSlider = () => {
       <div className="slider">
         <div className="slider-track">
           <ul className="slide-list" style={slideListStyle} ref={slideListRef}>
-            {renderSlideList(slideList, slideCount, currentSlide)}
+            {renderSlideList(slideList, slideListCount, currentSlide)}
           </ul>
         </div>
       </div>

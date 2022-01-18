@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Icons from 'components/Icons';
+import { BREAK_POINT, IMAGE_WIDTH } from 'components/utility/constants';
 
 import 'styles/slide/SlideItem.css';
 
 const SlideItem = ({ data, index, current }) => {
+  const [imageWidth, setImageWidth] = useState(IMAGE_WIDTH);
   const { NextButton } = Icons();
   const active = index === current;
 
+  const browserWidth = window.innerWidth;
+
+  useEffect(() => {
+    if (browserWidth >= BREAK_POINT) setImageWidth(IMAGE_WIDTH);
+    if (browserWidth < BREAK_POINT) setImageWidth(browserWidth - 100);
+  }, [browserWidth]);
+
   return (
-    <li className={`slide ${active && 'active'}`}>
+    <li
+      className={`slide ${active && 'active'}`}
+      style={{
+        width: `${imageWidth}px`
+      }}
+    >
       <div className="slide_image">
         <a href="/" onClick={active ? event => event.preventDefault() : null}>
           <img src={data.image} alt="메인 배너 이미지" />
