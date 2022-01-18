@@ -1,7 +1,6 @@
 import React, { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import slideList from 'data/mainSlider.json';
 import { renderSlideList } from 'components/slide/renderSlideList';
-import useGetClientWidth from 'components/modules/useGetClientWidth';
 
 import * as CONST from 'components/utility/constants';
 
@@ -24,7 +23,6 @@ const MainSlider = () => {
   const slideListOffset = (slideListCount + currentSlide) * slideOuterWidth;
 
   const { PrevButton, NextButton } = Icons();
-  const { navBarWidth } = useGetClientWidth();
 
   const changeCurrent = amount => {
     setCurrentSlide(prev => prev + amount);

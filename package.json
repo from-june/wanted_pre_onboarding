@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/pak-fuse/preonboarding-frontend-wanted#readme",
   "dependencies": {
-    "jotai": "^1.5.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
