@@ -7,7 +7,9 @@
 </p>
 
 <p align="middle">
-  <a href="https://zealous-kepler-ffd67c.netlify.app/" target="_blank"> 🖥️ 데모 링크</a>
+  <a href="https://zealous-kepler-ffd67c.netlify.app/" target="_blank">
+    <strong>https://zealous-kepler-ffd67c.netlify.app/</strong>
+  </a>
 </p>
 
 <br />
